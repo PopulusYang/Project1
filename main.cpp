@@ -1,3 +1,8 @@
+/*
+ * This class represents a person with name and age attributes.
+ * It provides methods to access and modify these attributes.
+ */
+
 #include <windows.h>
 #include <commdlg.h>  
 #include <shobjidl.h>    // IFileDialog
