@@ -191,7 +191,7 @@ void paint_function(HDC hdc)//绘制状态专业函数
 			}
 			FillRect(hdc, &rect, hBrush);
 		}
-		std::wstring str = L"Q(,)=(,,)";
+		std::wstring str = L"δ(,)=(,,)";
 		str.insert(2, std::to_wstring(f.fstate));
 		str.insert(2, L"q");
 		wchar_t c = static_cast<wchar_t>(f.fc);
