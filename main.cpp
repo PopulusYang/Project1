@@ -160,7 +160,7 @@ void runtm(HWND hwnd)
 	isrunning = false;
 }
 std::thread tm_thread;
-void paint_function(HDC hdc)//绘制状态专业函数
+void paint_function(HDC hdc)//绘制状态转移函数
 {
 	int QWidth = 120;
 	int QHeight = 30;
