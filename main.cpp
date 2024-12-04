@@ -346,7 +346,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		if (LOWORD(wParam) == IDM_HELP)
 		{
-			MessageBox(hwnd, TEXT("第一步：准备文件\n\t文件格式为：\n\t\t状态数\n\t\t字母表\n\t\t初始状态\n\t\t最终状态\n\t\t占位符号\n\t\t状态转移函数\n\t\t输入串(开头加上“/”)\n\n第二步：点击“导入文件”按钮，选择文件\n\n第三步：点击“运行”按钮，模拟图灵机运行（再次点击“运行”按钮，加速模拟）\n\n其他：\n\t点击“停止”按钮，停止模拟\n\t点击“重置”按钮，重置图灵机\n\t点击“运行”按钮，模拟图灵机运行\n\t点击“停止”按钮，中断模拟\n\t点击“重置”按钮，重置图灵机"), TEXT("帮助"), MB_OK | MB_ICONINFORMATION);
+			MessageBox(hwnd,
+				TEXT("第一步：准备文件\n\t文件格式为：\n\t\t状态数\n\t\t字母表\n\t\t初始状态\n\t\t最终状态\n\t\t占位符号\n\t\t状态转移函数\n\t\t输入串(开头加上“/”)\n\n第二步：点击“导入文件”按钮，选择文件\n\n第三步：点击“运行”按钮，模拟图灵机运行（再次点击“运行”按钮，加速模拟）\n\n其他：\n\t点击“停止”按钮，停止模拟\n\t点击“重置”按钮，重置图灵机\n\t点击“运行”按钮，模拟图灵机运行\n\t点击“停止”按钮，中断模拟\n\t点击“重置”按钮，重置图灵机"),
+				TEXT("帮助"), MB_OK | MB_ICONINFORMATION);
 		}
 		if (LOWORD(wParam) == ID_BUTTON_IMPORT)  // 判断是否点击了“导入文件”按钮
 		{
