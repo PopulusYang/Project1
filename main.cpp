@@ -1,3 +1,8 @@
+/*
+ * This class represents a person with name and age attributes.
+ * It provides methods to access and modify these attributes.
+ */
+
 #include <windows.h>
 #include <commdlg.h>  
 #include <shobjidl.h>    // IFileDialog
@@ -113,6 +118,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 		300, 400, 120, 30,
 		hwnd, (HMENU)ID_BUTTON_STOP, hInstance, NULL);
 
+
+
 	ShowWindow(hwnd, iCmdShow);
 	UpdateWindow(hwnd);
 
@@ -120,6 +127,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
+		UpdateWindow(hwnd);
 	}
 	return msg.wParam;
 }
@@ -276,6 +284,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		paint_function(hdc);
 
 		//绘制图灵机
+
+
+		// 设置矩形的宽度和高度
 		charWidth = 30;
 		charHeight = 30;
 		x = 20; // 起始X坐标
@@ -288,8 +299,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			// 计算字符位置
 			RECT charRect = { x, y, x + charWidth, y + charHeight };
+
+			// 绘制矩形框
 			Rectangle(hdc, charRect.left, charRect.top, charRect.right, charRect.bottom);
+
+			// 绘制字符
 			DrawText(hdc, &Ttemp[i], 1, &charRect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+
 			// 更新下一个字符的X坐标
 			x += charWidth + 5;
 		}
@@ -333,7 +349,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			OpenFileDialog(hwnd);  // 弹出文件对话框
 		}
 		if (LOWORD(wParam) == ID_BUTTON_RUN_ONCE)//运行图灵机
-		{
+			{
 			if (isrunning) {
 				MessageBox(hwnd, TEXT("正在运行"), TEXT("提示"), MB_OK | MB_ICONINFORMATION);
 				break;
