@@ -1,3 +1,8 @@
+/*
+ * This class represents a person with name and age attributes.
+ * It provides methods to access and modify these attributes.
+ */
+
 #pragma once
 #include <vector>
 #include<string>
@@ -131,7 +136,7 @@ public:
 			{
 				isover = true;
 				return OVER;
-			}
+		}
 				
 		}
 		return NOTOVER;

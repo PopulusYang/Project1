@@ -1,3 +1,8 @@
+/*
+ * This class represents a person with name and age attributes.
+ * It provides methods to access and modify these attributes.
+ */
+
 #include <windows.h>
 #include <commdlg.h>  
 #include <shobjidl.h>    // IFileDialog
@@ -113,6 +118,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 		300, 400, 120, 30,
 		hwnd, (HMENU)ID_BUTTON_STOP, hInstance, NULL);
 
+
+
 	ShowWindow(hwnd, iCmdShow);
 	UpdateWindow(hwnd);
 
@@ -120,6 +127,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
+		UpdateWindow(hwnd);
 	}
 	return msg.wParam;
 }
@@ -228,9 +236,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		HPEN hPen = CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 		HPEN hOldPen = (HPEN)SelectObject(hdc, hPen);
 		// 绘制矩形
-		Rectangle(hdc, 10, 35, 720, 340);
+		Rectangle(hdc, 10, 30, 720, 340);
 		Rectangle(hdc, 10, 340, 720, 520);
-		Rectangle(hdc, 720, 35, 1150, 520);
+		Rectangle(hdc, 720, 30, 1150, 520);
 		// 绘制状态栏
 		Rectangle(hdc, 140, 100, 700, 130);
 		RECT r = { 20,100,140,130 };
@@ -276,6 +284,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		paint_function(hdc);
 
 		//绘制图灵机
+
+
+		// 设置矩形的宽度和高度
 		charWidth = 30;
 		charHeight = 30;
 		x = 20; // 起始X坐标
@@ -288,8 +299,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			// 计算字符位置
 			RECT charRect = { x, y, x + charWidth, y + charHeight };
+
+			// 绘制矩形框
 			Rectangle(hdc, charRect.left, charRect.top, charRect.right, charRect.bottom);
+
+			// 绘制字符
 			DrawText(hdc, &Ttemp[i], 1, &charRect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+
 			// 更新下一个字符的X坐标
 			x += charWidth + 5;
 		}
@@ -322,18 +338,22 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		if (LOWORD(wParam) == IDM_ABOUT)
 		{
-			MessageBox(hwnd, TEXT("图灵机模拟器 V0.0.2"), TEXT("关于"), MB_OK | MB_ICONINFORMATION);
+			MessageBox(hwnd, TEXT("图灵机模拟器 V1.0.1\nCopyright (c) 2024 PopulusYang"), TEXT("关于"), MB_OK | MB_ICONINFORMATION);
 		}
 		if (LOWORD(wParam) == IDM_IMPORT)
 		{
 			OpenFileDialog(hwnd);
+		}
+		if (LOWORD(wParam) == IDM_HELP)
+		{
+			MessageBox(hwnd, TEXT("第一步：准备文件\n\t文件格式为：\n\t\t状态数\n\t\t字母表\n\t\t初始状态\n\t\t最终状态\n\t\t占位符号\n\t\t状态转移函数\n\t\t输入串(开头加上“/”)\n\n第二步：点击“导入文件”按钮，选择文件\n\n第三步：点击“运行”按钮，模拟图灵机运行（再次点击“运行”按钮，加速模拟）\n\n其他：\n\t点击“停止”按钮，停止模拟\n\t点击“重置”按钮，重置图灵机\n\t点击“运行”按钮，模拟图灵机运行\n\t点击“停止”按钮，中断模拟\n\t点击“重置”按钮，重置图灵机"), TEXT("帮助"), MB_OK | MB_ICONINFORMATION);
 		}
 		if (LOWORD(wParam) == ID_BUTTON_IMPORT)  // 判断是否点击了“导入文件”按钮
 		{
 			OpenFileDialog(hwnd);  // 弹出文件对话框
 		}
 		if (LOWORD(wParam) == ID_BUTTON_RUN_ONCE)//运行图灵机
-		{
+			{
 			if (isrunning) {
 				MessageBox(hwnd, TEXT("正在运行"), TEXT("提示"), MB_OK | MB_ICONINFORMATION);
 				break;

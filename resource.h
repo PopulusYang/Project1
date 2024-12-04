@@ -6,6 +6,7 @@
 #define IDM_IMPORT						102
 #define IDM_EXIT						103
 #define IDM_ABOUT						104
+#define IDM_HELP						105
 #define IDC_TM							109
 
 // Next default values for new objects
