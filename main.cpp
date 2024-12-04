@@ -519,7 +519,6 @@ void ReadFileContents(const TCHAR* filePath, HWND hwnd)
 	std::vector<int> finalNum;
 	char blank = 'B';
 	std::vector<function> functons;
-	// 将每一行内容显示在一个 MessageBox 中
 	for (size_t i = 0; i < lines.size(); ++i)
 	{
 		if (i == 0)
