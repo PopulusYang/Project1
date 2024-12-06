@@ -127,7 +127,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
-		UpdateWindow(hwnd);
 	}
 	return msg.wParam;
 }
